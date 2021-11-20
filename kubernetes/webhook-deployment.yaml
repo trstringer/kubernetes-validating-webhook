@@ -1,0 +1,28 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: validating-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: validating-webhook
+  template:
+    metadata:
+      labels:
+        app: validating-webhook
+    spec:
+      containers:
+        - name: validating-webhook
+          image: localhost:5000/validating-webhook:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 443
+          volumeMounts:
+            - name: cert
+              mountPath: /etc/opt
+              readOnly: true
+      volumes:
+        - name: cert
+          secret:
+            secretName: server-cert

@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: validating-webhook
+spec:
+  selector:
+    app: validating-webhook
+  ports:
+    - port: 443
+      targetPort: 443
