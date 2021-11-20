@@ -2,8 +2,6 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: test-app
-  labels:
-    hello: universe
 spec:
   containers:
     - name: test-app
